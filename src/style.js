@@ -34,7 +34,7 @@ export const Section = styled.section`
     height: 100vh;
 `
 
-export const Form = styled.form`
+export const Form = styled.article`
     display: flex;
     flex-direction: column;
 `

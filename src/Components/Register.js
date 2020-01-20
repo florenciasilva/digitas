@@ -24,7 +24,7 @@ const Register = (props) => {
     };
 
     return(
-        <Form method="post">
+        <Form>
             <label htmlFor="email">Write your email here</label>
             <Input type="email" required id="email" onChange={handleInputChange} />
             <label htmlFor="password">Write your password here</label>
