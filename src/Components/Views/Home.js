@@ -30,8 +30,8 @@ const Home = (props) => {
         <>
             <p> Bienvenido {user.email}</p>
             <button onClick={logOut}> signOut</button>
-            <Redeem uid={user.uid}/>
-            <Products />
+            <Redeem uid={user.uid} />
+            <Products uid={user.uid} />
         </>
     );
 };

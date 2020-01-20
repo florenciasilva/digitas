@@ -18,7 +18,8 @@ const Redeem = (props) => {
                     db.collection('users').doc(props.uid).set({
                         uid: props.uid,
                         tokens: user.data().tokens + doc.data().coupon,
-                        coupons: [...user.data().coupons, coupon]
+                        coupons: [...user.data().coupons, coupon],
+                        purchased: user.data().purchased
                     });
                 });
             } else {

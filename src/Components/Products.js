@@ -2,7 +2,7 @@ import React, { useEffect, useState, Fragment } from 'react';
 import firebase from 'firebase';
 import Cart from './Cart';
 
-const Products = () => {
+const Products = (props) => {
     const [ products, setProducts ] = useState()
     const [ cart, setCart ] = useState([]);
 
@@ -41,7 +41,7 @@ const Products = () => {
     })
     return (
         <Fragment>
-            <Cart products={cart} />
+            <Cart products={cart} uid={props.uid} />
             {productList}
         </Fragment> 
     )
