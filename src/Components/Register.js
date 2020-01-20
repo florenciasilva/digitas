@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useReducer } from 'react';
 import firebase from 'firebase';
 import { withRouter } from 'react-router-dom';
 
@@ -12,9 +12,14 @@ const Register = (props) => {
 
     const handleRegister = (credentials) => {
         firebase.auth().createUserWithEmailAndPassword(credentials.email, credentials.password)
-        .then(res => console.log(res))
+        .then(res => {
+            const db = firebase.firestore();
+            db.collection('users').doc(res.user.uid).set({
+                uid: res.user.uid,
+            });
+            props.history.push('/home')
+        })
         .catch(err => console.log(err));
-        props.history.push('/home');
     };
 
     return(
