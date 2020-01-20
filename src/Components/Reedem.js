@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import firebase from 'firebase';
+import styled from 'styled-components';
+import { PrimaryBtn } from '../style';
 
 const Redeem = (props) => {
     const [ coupon, setCoupon ] = useState();
@@ -9,7 +11,8 @@ const Redeem = (props) => {
         setCoupon(event.target.value)
     }
     
-    const redeemCoupon = () => {
+    const redeemCoupon = (e) => {
+        e.preventDefault();
         const db = firebase.firestore();
         const ref = db.collection('coupons').doc(coupon);
         ref.get().then(doc => {
@@ -28,7 +31,8 @@ const Redeem = (props) => {
         }).catch(err => console.log(err.message));
     }
 
-    const checkTokens = () => {
+    const checkTokens = (e) => {
+        e.preventDefault();
         const db = firebase.firestore();
         const ref = db.collection('users').doc(props.uid);
 
@@ -40,14 +44,54 @@ const Redeem = (props) => {
 
     return (
         <>
-            <label htmlFor="redeem"> Redeem your coupon </label>
-            <input type="number" id="redeem" onChange={handleOnChange} />
-            <button onClick={redeemCoupon}>Redeem</button>
-
-            <button onClick={checkTokens}>Check Tokens</button>
-            <p>{tokens}</p>
+        <Container>
+        <Form>
+            <Label htmlFor="redeem"> Redeem your coupon </Label>
+            <Input type="number" id="redeem" onChange={handleOnChange} />
+            <RedeemBtn onClick={redeemCoupon}>Redeem</RedeemBtn>
+        </Form>
+        <PrimaryBtn onClick={checkTokens}>Check Tokens</PrimaryBtn>
+        <Tokens>{tokens}</Tokens>
+        </Container>
         </>
     );
 };
+
+
+const Form = styled.form`
+    width: 20vw;
+    display: flex;
+    flex-direction: column;
+`
+
+const Label = styled.label`
+    letter-spacing: .2em;
+`
+
+const Input = styled.input`
+    width: 20vw
+`
+
+const Tokens = styled.p`
+    width: 3vw;
+    margin: 1em;
+    background-color: #E0FFFF;
+    text-align: center;
+    margin-top: -1em;
+`
+
+const Container = styled.aside`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 29vw;
+    flex-direction: column;
+`
+
+const RedeemBtn = styled(PrimaryBtn)`
+    width: 5vw;
+    margin: 1em;
+    align-self: center;
+`
 
 export default Redeem;

@@ -1,5 +1,6 @@
 import React from 'react';
 import firebase from 'firebase';
+import { PrimaryBtn } from '../style';
 
 const Cart = (props) => {
     const purchase = (event) => {
@@ -38,15 +39,15 @@ const Cart = (props) => {
                 return (
                     <div key={i}>
                         <p>{product.name}</p>
-                        <p>{product.price}</p>
+                        <p>$ {product.price}</p>
                     </div>
                 );
             });
             return (
                 <>
                     {productList}
-                    {totalCart}
-                    <button onClick={purchase} value={totalCart}> Purchase </button>
+                    <p>Total: $ {totalCart}</p>
+                    <PrimaryBtn onClick={purchase} value={totalCart}> Purchase </PrimaryBtn>
                 </>
             )
         } else {
