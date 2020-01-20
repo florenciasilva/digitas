@@ -17,6 +17,9 @@ const Register = (props) => {
             const db = firebase.firestore();
             db.collection('users').doc(res.user.uid).set({
                 uid: res.user.uid,
+                tokens: 0,
+                coupons: [],
+                purchased: []
             });
             props.history.push('/home')
         })
