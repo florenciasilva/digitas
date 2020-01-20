@@ -4,6 +4,8 @@ import firebase from 'firebase';
 import Redeem from '../Reedem';
 import Products from '../Products';
 import styled from 'styled-components';
+import { Container } from '../../style';
+
 
 const Home = (props) => {
     const [ user, setUser ] = useState({});
@@ -69,11 +71,6 @@ const UserName = styled.h1`
     border-bottom: 1.5px solid white;
 `
 
-const Container = styled.main`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100vw;
-`
+
 
 export default withRouter(Home);

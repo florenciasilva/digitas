@@ -1,6 +1,7 @@
-import React, { useState, useReducer } from 'react';
+import React, { useState } from 'react';
 import firebase from 'firebase';
 import { withRouter } from 'react-router-dom';
+import { Heading, Section, Form, Input, PrimaryBtn } from '../style';
 
 
 const Register = (props) => {
@@ -23,13 +24,13 @@ const Register = (props) => {
     };
 
     return(
-        <>
-            <label htmlFor="email"> Email </label>
-            <input type="email" required id="email" onChange={handleInputChange} />
-            <label htmlFor="email"> Password </label>
-            <input type="password" required id="password" onChange={handleInputChange} />
-            <button onClick={() => handleRegister(credentials)}> Register </button>
-        </>
+        <Form method="post">
+            <label htmlFor="email">Write your email here</label>
+            <Input type="email" required id="email" onChange={handleInputChange} />
+            <label htmlFor="password">Write your password here</label>
+            <Input type="password" required id="password" onChange={handleInputChange} />
+            <PrimaryBtn onClick={() => handleRegister(credentials)}>Register</PrimaryBtn>
+        </Form>
     );
 };
 
