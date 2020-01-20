@@ -12,9 +12,8 @@ const Login = (props) => {
 
     const handleLogin = (credentials) => {
         firebase.auth().signInWithEmailAndPassword(credentials.email, credentials.password)
-        .then(res => console.log(res))
+        .then(res => props.history.push('/home'))
         .catch(err => console.log(err));
-        props.history.push('/home');
     };
 
     return(
